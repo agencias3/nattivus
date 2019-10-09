@@ -57,7 +57,7 @@ class ProductController extends Controller
         $this->SEOService = $SEOService;
     }
 
-    public function index()
+    public function index(SiteRequest $request)
     {
         $seoPage = $this->SEOService->getSeoPageSession(6);
         $this->SEOService->getPage($seoPage);
@@ -79,7 +79,7 @@ class ProductController extends Controller
                 $cover = asset('uploads/product/' . $image->image);
             }
 
-            $seoPage = $this->SEOService->getSeoPageSession(4);
+            $seoPage = $this->SEOService->getSeoPageSession(6);
             $this->SEOService->getPageComplement($product, $seoPage['name'], $cover, $cover);
 
             $categoryFeatured = $product->categories->firstWhere('main', 'y');

@@ -60,20 +60,31 @@
                 •
             </li>
             <li>
-                <a href="{{ route('category.show', $categoryFeatured->category->seo_link) }}" title="{{ $categoryFeatured->category->category->name }}">
+                <a href="{{ route('category.show', $categoryFeatured->category->category->seo_link) }}" title="{{ $categoryFeatured->category->category->name }}">
                     {{ $categoryFeatured->category->category->name }}
                 </a>
             </li>
-        @endif
-        @if(isset($categoryFeatured->category->name))
-        <li>
-            •
-        </li>
-        <li>
-            <a href="{{ route('category.sub_category', ['category' => $categoryFeatured->category->category->seo_link, 'seo_link' => $categoryFeatured->category->seo_link]) }}" title="{{ $categoryFeatured->category->name }}">
-                {{ $categoryFeatured->category->name }}
-            </a>
-        </li>
+            @if(isset($categoryFeatured->category->name))
+            <li>
+                •
+            </li>
+            <li>
+                <a href="{{ route('category.sub_category', ['category' => $categoryFeatured->category->category->seo_link, 'seo_link' => $categoryFeatured->category->seo_link]) }}" title="{{ $categoryFeatured->category->name }}">
+                    {{ $categoryFeatured->category->name }}
+                </a>
+            </li>
+            @endif
+        @else
+            @if(isset($categoryFeatured->category->name))
+                <li>
+                    •
+                </li>
+                <li>
+                    <a href="{{ route('category.show', $categoryFeatured->category->seo_link) }}" title="{{ $categoryFeatured->category->name }}">
+                        {{ $categoryFeatured->category->name }}
+                    </a>
+                </li>
+            @endif
         @endif
         <li>
             •

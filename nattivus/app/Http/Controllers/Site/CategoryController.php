@@ -3,6 +3,7 @@
 namespace AgenciaS3\Http\Controllers\Site;
 
 use AgenciaS3\Http\Controllers\Controller;
+use AgenciaS3\Http\Requests\SiteRequest;
 use AgenciaS3\Repositories\CategoryRepository;
 use AgenciaS3\Repositories\ProductRepository;
 use AgenciaS3\Services\SEOService;
@@ -25,12 +26,7 @@ class CategoryController extends Controller
         $this->SEOService = $SEOService;
     }
 
-    public function index()
-    {
-
-    }
-
-    public function show($seo_link)
+    public function show(SiteRequest $request, $seo_link)
     {
         $category = $this->repository->findWhere(['active' => 'y', 'seo_link' => $seo_link])->first();
         if ($category) {
@@ -46,7 +42,7 @@ class CategoryController extends Controller
         return redirect(route('category'), 301);
     }
 
-    public function subCategory($category, $seo_link)
+    public function subCategory(SiteRequest $request, $category, $seo_link)
     {
         $category = $this->repository->findWhere(['active' => 'y', 'seo_link' => $seo_link])->first();
         if ($category) {

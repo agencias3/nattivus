@@ -5,11 +5,11 @@ namespace AgenciaS3\Repositories;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface StoreRelatedRepository.
+ * Interface ProductRelatedRepository.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-interface StoreRelatedRepository extends RepositoryInterface
+interface ProductRelatedRepository extends RepositoryInterface
 {
     //
 }

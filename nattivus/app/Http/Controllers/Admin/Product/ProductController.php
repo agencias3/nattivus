@@ -32,6 +32,8 @@ class ProductController extends Controller
 
     protected $productTagController;
 
+    protected $productTechnicalSpecificationController;
+
     protected $utilObjeto;
 
     protected $path;
@@ -42,6 +44,7 @@ class ProductController extends Controller
                                 ProductImageController $productImageController,
                                 PostProductController $postProductController,
                                 ProductTagController $productTagController,
+                                ProductTechnicalSpecificationController $productTechnicalSpecificationController,
                                 UtilObjeto $utilObjeto)
     {
         $this->repository = $repository;
@@ -50,6 +53,7 @@ class ProductController extends Controller
         $this->productImageController = $productImageController;
         $this->postProductController = $postProductController;
         $this->productTagController = $productTagController;
+        $this->productTechnicalSpecificationController = $productTechnicalSpecificationController;
         $this->utilObjeto = $utilObjeto;
         $this->path = 'uploads/product/';
     }
@@ -183,6 +187,7 @@ class ProductController extends Controller
         $this->productImageController->destroyGallery($id);
         $this->postProductController->destroyAllProduct($id);
         $this->productTagController->destroyAllProduct($id);
+        $this->productTechnicalSpecificationController->destroyAllProduct($id);
         $deleted = $this->repository->delete($id);
         return redirect()->back()->with('success', 'Registro removido com sucesso!');
     }

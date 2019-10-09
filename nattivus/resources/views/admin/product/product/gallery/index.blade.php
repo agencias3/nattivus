@@ -21,8 +21,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="alert alert-info">
-                            Tamanho Imagem (1200px X 630px)<br />
-                            CAPA: 600px X 400px
+                            Tamanho Imagem (1200px X 630px)
                         </div>
                     </div>
                 </div>

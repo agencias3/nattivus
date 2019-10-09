@@ -4,16 +4,16 @@ namespace AgenciaS3\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use AgenciaS3\Repositories\ProductFileRepository;
-use AgenciaS3\Entities\ProductFile;
-use AgenciaS3\Validators\ProductFileValidator;
+use AgenciaS3\Repositories\ProductRelatedRepository;
+use AgenciaS3\Entities\ProductRelated;
+use AgenciaS3\Validators\ProductRelatedValidator;
 
 /**
- * Class ProductFileRepositoryEloquent.
+ * Class ProductRelatedRepositoryEloquent.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class ProductFileRepositoryEloquent extends BaseRepository implements ProductFileRepository
+class ProductRelatedRepositoryEloquent extends BaseRepository implements ProductRelatedRepository
 {
     /**
      * Specify Model class name
@@ -22,7 +22,7 @@ class ProductFileRepositoryEloquent extends BaseRepository implements ProductFil
      */
     public function model()
     {
-        return ProductFile::class;
+        return ProductRelated::class;
     }
 
     /**
@@ -33,7 +33,7 @@ class ProductFileRepositoryEloquent extends BaseRepository implements ProductFil
     public function validator()
     {
 
-        return ProductFileValidator::class;
+        return ProductRelatedValidator::class;
     }
 
 

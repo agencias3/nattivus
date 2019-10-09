@@ -10,7 +10,7 @@ $tag = $objProduct->getTagProduct($row->id, 1);
 <li class="d_flex flex-1">
     <a class="d_flex direction-column" href="{{ $route }}" title="{{ $row->name }}">
         <article class="w-100">
-            @if(isPost($tag->tag->name))
+            @if(isset($tag->tag->name))
             <b class="type-2 type-1">
                 {{ $tag->tag->name }}
             </b>

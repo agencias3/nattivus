@@ -17,18 +17,18 @@ class TechnicalSpecificationController extends Controller
 
     protected $validator;
 
-    protected $productTagController;
+    protected $productTechnicalSpecificationController;
 
     protected $utilObjeto;
 
     public function __construct(TechnicalSpecificationRepository $repository,
                                 TechnicalSpecificationValidator $validator,
-                                ProductTagController $productTagController,
+                                ProductTechnicalSpecificationController $productTechnicalSpecificationController,
                                 UtilObjeto $utilObjeto)
     {
         $this->repository = $repository;
         $this->validator = $validator;
-        $this->productTagController = $productTagController;
+        $this->productTechnicalSpecificationController = $productTechnicalSpecificationController;
         $this->utilObjeto = $utilObjeto;
     }
 
@@ -131,7 +131,7 @@ class TechnicalSpecificationController extends Controller
 
     public function destroy($id)
     {
-        $this->productTagController->destroyAllTag($id);
+        $this->productTechnicalSpecificationController->destroyAll($id);
         $deleted = $this->repository->delete($id);
         return redirect()->back()->with('success', 'Registro removido com sucesso!');
     }

@@ -85,7 +85,7 @@ class ProductTechnicalSpecificationController extends Controller
         return redirect()->back()->with('success', 'Registro removido com sucesso!');
     }
 
-    public function destroyAllTag($id)
+    public function destroyAll($id)
     {
         return $this->repository->deleteWhere(['technical_id' => $id]);
     }

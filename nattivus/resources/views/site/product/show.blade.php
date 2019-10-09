@@ -48,7 +48,7 @@
                         <div class="flex-1 d_flex direction-column justify-center self-center">
                             <div class="w-100 info">
                                 <?php $tag = $objProduct->getTagProduct($product->id, 1); ?>
-                                @if(isPost($tag->tag->name))
+                                @if(isset($tag->tag->name))
                                 <strong>
                                     {{ $tag->tag->name }}
                                 </strong>
