@@ -33,7 +33,7 @@
                             <th>Nome</th>
                             <th class="col-md-1 text-center">Ordem</th>
                             <th class="col-md-1 text-center">Ativo</th>
-                            <th class="col-md-4 text-center">Ação</th>
+                            <th class="col-md-5 text-center">Ação</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -49,6 +49,7 @@
                                 </td>
                                 <td data-title="Ação" class="actions text-center">
                                     <a href="{{ route('admin.product.product.technical-specification.index', ['id' => $row->id]) }}" class="btn btn-default white-hover" title="Especificação Técnica"><i class="fa fa-file-text"></i></a>
+                                    <a href="{{ route('admin.product.product.related.index', ['id' => $row->id]) }}" class="btn btn-default white-hover" title="Relacionados"><i class="fa fa-mobile-phone"></i></a>
                                     <a href="{{ route('admin.product.product.tags.index', ['id' => $row->id]) }}" class="btn btn-default white-hover" title="Tags"><i class="fa fa-tags"></i></a>
                                     <a href="{{ route('admin.product.product.category.index', ['id' => $row->id]) }}" class="btn btn-default white-hover" title="Categorias"><i class="fa fa-list-ul"></i></a>
                                     <a href="{{ route('admin.product.product.gallery.index', ['id' => $row->id]) }}" class="btn btn-default white-hover" title="Galeria"><i class="fa fa-image"></i></a>

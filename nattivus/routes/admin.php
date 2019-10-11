@@ -146,6 +146,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
                 Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'ProductTechnicalSpecificationController@destroy']);
             });
 
+            //RELATED
+            Route::group(['prefix' => 'related', 'as' => 'related.'], function () {
+                Route::get('{id}', ['as' => 'index', 'uses' => 'ProductRelatedController@index']);
+                Route::post('store', ['as' => 'store', 'uses' => 'ProductRelatedController@store']);
+                Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'ProductRelatedController@destroy']);
+                Route::get('/productSelect/{id}', ['as' => 'productSelect', 'uses' => 'ProductRelatedController@productSelect']);
+            });
+
             //FILES
             Route::group(['prefix' => 'file', 'as' => 'file.'], function () {
                 Route::get('{id}', ['as' => 'index', 'uses' => 'ProductFileController@index']);

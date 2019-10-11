@@ -1,17 +1,17 @@
 <?php
 
-namespace AgenciaS3\Mail\Site\Partner;
+namespace AgenciaS3\Mail\Site\Budget;
 
-use AgenciaS3\Entities\Partner;
+use AgenciaS3\Entities\Budget;
 use Illuminate\Mail\Mailable;
 
-class PartnerClientMail extends Mailable
+class BudgetClientMail extends Mailable
 {
     public $contact;
 
     public $form;
 
-    public function __construct(Partner $contact, $form)
+    public function __construct(Budget $contact, $form)
     {
         $this->contact = $contact;
         $this->form = $form;
@@ -46,7 +46,7 @@ class PartnerClientMail extends Mailable
                 'data' => $this->contact,
                 'textEmail' => $description
             ])
-            ->view('vendor.emails.site.partner.client');
+            ->view('vendor.emails.site.budget.client');
 
 
         return $email;

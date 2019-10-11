@@ -24,8 +24,6 @@ class HomeController extends Controller
 
     protected $categoryRepository;
 
-    protected $segmentRepository;
-
     protected $postRepository;
 
     protected $SEOService;
@@ -34,7 +32,6 @@ class HomeController extends Controller
                                 BannerMobileRepository $bannerMobileRepository,
                                 ProductRepository $productRepository,
                                 CategoryRepository $categoryRepository,
-                                SegmentRepository $segmentRepository,
                                 PostRepository $postRepository,
                                 SEOService $SEOService)
     {
@@ -42,7 +39,6 @@ class HomeController extends Controller
         $this->bannerMobileRepository = $bannerMobileRepository;
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->segmentRepository = $segmentRepository;
         $this->postRepository = $postRepository;
         $this->SEOService = $SEOService;
     }

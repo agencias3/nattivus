@@ -55,4 +55,9 @@ class Product extends Model implements Transformable
         return $this->hasMany(ProductTag::class);
     }
 
+    public function budgetProducts()
+    {
+        return $this->hasMany(BudgetProduct::class);
+    }
+
 }

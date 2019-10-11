@@ -19,8 +19,8 @@
 $style = [
     /* Layout ------------------------------ */
 
-    'body' => 'margin: 0; padding: 0; width: 100%; background-color: #0d3880;',
-    'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #0d3880;',
+    'body' => 'margin: 0; padding: 0; width: 100%; background-color: #1c3456;',
+    'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #1c3456;',
 
     /* Masthead ----------------------- */
 
@@ -78,83 +78,42 @@ $style = [
                                 <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
                                     <!-- Greeting -->
                                     <h1 style="{{ $style['header-1'] }}">
-                                        Novo contato de parceiro recebido pelo site
+                                        Novo orçamento recebido pelo site
                                     </h1>
 
                                     <!-- Intro -->
                                     <p style="{{ $style['paragraph'] }}">
-                                        <strong>Dados Básicos:</strong><br />
-                                        Razão Social: {{ $data->social_reason }}<br />
-                                        Nome Fantasia: {{ $data->fantasy_name }}<br />
-                                        CNPJ: {{ $data->cnpj }}<br />
-                                        Inscrição Estadual: {{ $data->state_registration }}<br />
-                                        Endereço: {{ $data->address }}<br />
-                                        Bairro: {{ $data->neighborhood }}<br />
-                                        UF: {{ $data->state }}<br />
-                                        Cidade: {{ $data->city }}<br />
-                                        CEP: {{ $data->zip_code }}<br />
+                                        Nome: {{ $data->name }}
+                                        Empresa: {{ $data->company }}<br />
+                                        E-mail: {{ $data->email }}<br />
                                         Telefone: {{ $data->phone }}<br />
-                                        Fax: {{ $data->fax }}<br />
-                                        E-mail: {{ $data->email }}
+                                        Mensagem: {{ $data->message }}<br /><br />
+                                        Data recebido {{ date('d/m/Y h:i', strtotime($data->created_at)) }}
                                     </p>
 
-                                    <p style="{{ $style['paragraph'] }}">
-                                        <strong>Dados Avançados:</strong><br />
-                                        Quantidade de Funcionários: {{ $data->amount_employees }}<br />
-                                        Regiões de interesse para atuação: {{ $data->acting_region }}<br />
-                                        Como chegou à Wesa? {{ $data->how_did_it_arrive }}<br />
-                                        Data recebido {{ mysql_to_data($data->created_at, true, false) }}
-                                    </p>
-
-                                    @if($data->contacts)
-                                        <p style="{{ $style['paragraph'] }}">
-                                            <strong>Contatos:</strong><br />
-                                            @foreach($data->contacts as $row)
-                                            Nome: {{ $row->name }}<br />
-                                            Cargo: {{ $row->office }}<br />
-                                            Telefone: {{ $row->phone }}<br /><br />
-                                            @endforeach
-                                        </p>
-                                    @endif
-
-                                    @if($data->products)
-                                        <p style="{{ $style['paragraph'] }}">
-                                            <strong>Produtos:</strong><br />
+                                    <!-- products -->
+                                    @if(isset($data->products) && count($data->products) > 0)
+                                        <table style="{{ $style['body_sub'] }}" width="100%" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="{{ $fontFamily }}" width="60%"><p style="{{ $style['paragraph'] }}"><strong>Produto</strong></p></td>
+                                                <td style="{{ $fontFamily }}" align="center"><p style="{{ $style['paragraph'] }}"><strong>Qtde</strong></p></td>
+                                                <td style="{{ $fontFamily }}" align="center"><p style="{{ $style['paragraph'] }}"><strong>Esp. Técnica</strong></p></td>
+                                            </tr>
+                                            <?php $total = 0; ?>
                                             @foreach($data->products as $row)
-                                                Produto: {{ $row->product }}<br />
-                                                Fabricante: {{ $row->manufacturer }}<br />
-                                                Descrição: {{ $row->description }}<br /><br />
+                                                <?php $total += $row->price*$row->quantity; ?>
+                                                <tr>
+                                                    <td style="{{ $fontFamily }}"><p style="{{ $style['paragraph'] }}">{{ $row->product->name }}</p></td>
+                                                    <td style="{{ $fontFamily }}" align="center"><p style="{{ $style['paragraph'] }}">{{ $row->quantity }}</p></td>
+                                                    <td style="{{ $fontFamily }}" align="center"><p style="{{ $style['paragraph'] }}">{{ $row->technical->name }}</p></td>
+                                                </tr>
                                             @endforeach
-                                        </p>
+                                        </table>
+                                        <br />
+                                        <br />
                                     @endif
 
-                                    @if($data->clients)
-                                        <p style="{{ $style['paragraph'] }}">
-                                            <strong>Clientes:</strong><br />
-                                            @foreach($data->clients as $row)
-                                                Razão Social: {{ $row->social_reason }}<br />
-                                                CNPJ: {{ $row->cnpj }}<br />
-                                                Telefone: {{ $row->phone }}<br />
-                                                UF: {{ $row->state }}<br />
-                                                Cidade: {{ $row->city }}<br /><br />
-                                            @endforeach
-                                        </p>
-                                    @endif
-
-                                    @if($data->providers)
-                                        <p style="{{ $style['paragraph'] }}">
-                                            <strong>Fornecedores:</strong><br />
-                                            @foreach($data->providers as $row)
-                                                Razão Social: {{ $row->social_reason }}<br />
-                                                CNPJ: {{ $row->cnpj }}<br />
-                                                Telefone: {{ $row->phone }}<br />
-                                                UF: {{ $row->state }}<br />
-                                                Cidade: {{ $row->city }}<br /><br />
-                                            @endforeach
-                                        </p>
-                                    @endif
-
-                                <!-- Action Button -->
+                                    <!-- Action Button -->
                                     @if (isset($actionText))
                                         <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
                                             <tr>

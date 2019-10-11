@@ -32,24 +32,22 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/quem-somos', 'AboutController@index')->name('about');
 
-    Route::get('/produtos', 'ProductController@index')->name('product');
-    Route::get('/produtos/{seo_link}', 'ProductController@category')->name('product.category');
-    Route::get('/produtos/{category}/{seo_link}', 'ProductController@show')->name('product.show');
-
     Route::get('/categoria', 'CategoryController@index')->name('category');
     Route::get('/categoria/{category}', 'CategoryController@show')->name('category.show');
     Route::get('/categoria/{category}/{category_sub}', 'CategoryController@subCategory')->name('category.sub_category');
 
+    Route::get('/produtos', 'ProductController@index')->name('products');
     Route::get('/produto/{seo_link}', 'ProductController@show')->name('product');
 
-    Route::get('/empreendimentos', 'EnterpriseController@index')->name('enterprise');
-    Route::get('/empreendimentos/{seo_link}', 'EnterpriseController@show')->name('enterprise.show');
-
-    Route::get('/faq', 'FaqController@index')->name('faq');
-    Route::get('/faq/like/{id}/{like}', 'FaqController@like')->name('like');
-
-    Route::get('/segmentos-de-negocios', 'BusinessSegmentsController@index')->name('business-segments');
-    Route::get('/segmentos-de-negocios/{seo_link}', 'BusinessSegmentsController@show')->name('business-segments.show');
+    Route::get('/orcamento', 'BudgetController@index')->name('budget');
+    Route::post('/orcamento/store', 'BudgetController@store')->name('budget.store');
+    Route::get('/orcamento/addProduto/{id}/{qty?}/{technical_id?}', 'BudgetController@addProduto')->name('budget.addProduct');
+    Route::post('/orcamento/addProdutoPost/{id}', 'BudgetController@addProdutoPost')->name('budget.addProductPost');
+    Route::get('/orcamento/getAddByOne/{product_id}', 'BudgetController@getAddByOne')->name('getAddByOne');
+    Route::get('/orcamento/getReduceByOne/{product_id}', 'BudgetController@getReduceByOne')->name('getReduceByOne');
+    Route::get('/orcamento/getRemoveItem/{product_id}', 'BudgetController@getRemoveItem')->name('getRemoveItem');
+    Route::get('/orcamento/updateCart', 'BudgetController@updateCart')->name('updateCart');
+    Route::get('/orcamento/updateCartTop', 'BudgetController@updateCartTop')->name('updateCartTop');
 
     Route::get('/cases', 'BlogController@index')->name('blog');
     Route::get('/cases/tag/{tag}', 'BlogController@tag')->name('blog.tag');
@@ -60,9 +58,6 @@ Route::group(['namespace' => 'Site'], function () {
 
     Route::get('/trabalhe-conosco', 'WorkController@index')->name('work');
     Route::post('/trabalhe-conosco/store', 'WorkController@store')->name('work.store');
-
-    Route::get('/parceiros', 'PartnerController@index')->name('partner');
-    Route::post('/parceiros/store', 'PartnerController@store')->name('partner.store');
 
     Route::post('/newsletter/store', 'NewsletterController@store')->name('newsletter.store');
 

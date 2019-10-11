@@ -95,4 +95,19 @@
             </a>
         </li>
     @endif
+    @if($ativo == 'orcamento')
+        <li>
+            <a href="{{ route('products') }}" title="Produtos">
+                Produtos
+            </a>
+        </li>
+        <li>
+            •
+        </li>
+        <li>
+            <a href="{{ route('budget') }}" title="Carrinho de Orçamento">
+                Carrinho de Orçamento
+            </a>
+        </li>
+    @endif
 </ul>

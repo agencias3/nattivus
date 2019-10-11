@@ -39,7 +39,7 @@ $tag = $objProduct->getTagProduct($row->id, 1);
             </p>
         </div>
     </a>
-    <a class="w-100 absolute z-index-4 left-0 bottom-0 main-bg-1 opacity-0 add-cart" href="javascript:void(0);" title="ADICIONAR AO CARRINHO">
+    <a class="w-100 absolute z-index-4 left-0 bottom-0 main-bg-1 opacity-0 add-cart btnAddProduct" data-id="{{ $row->id }}" href="javascript:void(0);" title="ADICIONAR AO CARRINHO">
         ADICIONAR AO CARRINHO
     </a>
 </li>

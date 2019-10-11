@@ -62,10 +62,10 @@
                                     </p>
                                 </div>
                             </div>
-                            <form class="m-top-30 d_flex direction-column w-1024-100" id="fProduct" method="post" action="">
+                            {!! Form::open(['route' => ['budget.addProductPost', $product->id], 'class' => 'm-top-30 d_flex direction-column w-1024-100', 'id' => 'fProduct']) !!}
                                 @if(!$technicals->isEmpty())
                                 <fieldset class="w-100">
-                                    <select class="w-100">
+                                    <select class="w-100" name="technical_id">
                                         <option value="">
                                             Alguma especificação técnica
                                         </option>
@@ -76,7 +76,7 @@
                                 </fieldset>
                                 @endif
                                 <fieldset class="w-100">
-                                    <select class="w-100">
+                                    <select class="w-100" name="quantity">
                                         <option value="">
                                             Selecione a Quantidade
                                         </option>
@@ -90,7 +90,7 @@
                                 <fieldset class="w-100">
                                     <input class="w-100 pointer smooth" type="submit" id="send-product" value="ADICIONAR AO CARRINHO" />
                                 </fieldset>
-                            </form>
+                            {!! Form::close() !!}
                         </div>
                     </aside>
                 </article>
@@ -115,7 +115,7 @@
                 <nav class="w-100 list-group-3 w-1024-100">
                     <ul class="w-100 d_flex wrap justify-center">
                         @foreach($products as $row)
-                            @include('site.category._li_list')
+                            @include('site.category._li_list', ['row' => $row->productRelated])
                         @endforeach
                     </ul>
                 </nav>

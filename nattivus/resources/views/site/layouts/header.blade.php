@@ -70,28 +70,28 @@
 					</a>
 				</figure>
 				<section class="flex-1 justify-end d_flex m-right-1250-0 m-left-1250-20-px column-600">
-					<form class="flex-1 d_flex form-search display-1024-none" id="fSearch" method="post" action="">
+					<form class="flex-1 d_flex form-search display-1024-none" id="fSearch" method="get" action="{{ route('products') }}">
 						<fieldset class="flex-1">
-							<input class="w-100" type="text" id="txt-search" name="txt-search" value="" placeholder="DIGITE O BRINDE QUE VOCÊ DESEJA" />
+							<input class="w-100" type="text" id="txt-search" name="search" value="@if(isset($search)){{ $search }}@endif" placeholder="DIGITE O BRINDE QUE VOCÊ DESEJA *" required />
 						</fieldset>
 						<fieldset class="flex-1">
 							<input class="w-100 pointer smooth" type="submit" id="send-search" name="send-search" value="" />
 						</fieldset>
 					</form>
-					<a class="flex-1 c-left d_flex justify-center main-bg-1 bt-cart smooth w-600-100" href="" title="">
+					<a class="flex-1 c-left d_flex justify-center main-bg-1 bt-cart smooth w-600-100" href="{{ route('budget') }}" title="Carrinho de Orçamento">
 						<figure>
-							<img src="{{ asset('assets/site/images/icons/cart.png') }}" title="" alt="" />
+							<img src="{{ asset('assets/site/images/icons/cart.png') }}" title="Carrinho de Orçamento" alt="Carrinho de Orçamento" />
 						</figure>
-						<span>
-							(0) itens
+						<span class="cartTop">
+							@include('site.layouts.cart-header')
 						</span>
 					</a>
-					<a class="flex-1 c-left d_flex justify-center secondary-bg-1 bt-login smooth w-600-100" href="" title="">
+					<a class="flex-1 c-left d_flex justify-center secondary-bg-1 bt-login smooth w-600-100" href="" title="Cadastro/Login">
 						<span class="font-2 smooth">
 							Cadastro/Login
 						</span>
 						<figure>
-							<img src="{{ asset('assets/site/images/icons/down.png') }}" title="" alt="" />
+							<img src="{{ asset('assets/site/images/icons/down.png') }}" title="Cadastro/Login" alt="Cadastro/Login" />
 						</figure>
 					</a>
 				</section>

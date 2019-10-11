@@ -21,7 +21,7 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
         'description' => 'like',
         'categories.name' => 'like',
         'categories.category.name' => 'like',
-        'tags.tag' => 'like'
+        'tags.tag.name' => 'like'
     ];
 
     public function getAllProductByCategoryRand($category_id, $limit, $product_id = null)

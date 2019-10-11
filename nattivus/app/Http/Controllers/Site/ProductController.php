@@ -8,6 +8,7 @@ use AgenciaS3\Repositories\CategoryRepository;
 use AgenciaS3\Repositories\ClientRepository;
 use AgenciaS3\Repositories\ProductFileRepository;
 use AgenciaS3\Repositories\ProductImageRepository;
+use AgenciaS3\Repositories\ProductRelatedRepository;
 use AgenciaS3\Repositories\ProductRepository;
 use AgenciaS3\Repositories\ProductTagRepository;
 use AgenciaS3\Repositories\ProductTechnicalSpecificationRepository;
@@ -22,38 +23,30 @@ class ProductController extends Controller
 
     protected $productImageRepository;
 
-    protected $productFileRepository;
-
-    protected $productTextRepository;
-
     protected $technicalSpecificationRepository;
 
     protected $categoryRepository;
 
-    protected $clientRepository;
-
     protected $productTagRepository;
+
+    protected $productRelatedRepository;
 
     protected $SEOService;
 
     public function __construct(ProductRepository $productRepository,
                                 ProductImageRepository $productImageRepository,
-                                ProductFileRepository $productFileRepository,
-                                ProductTextRepository $productTextRepository,
                                 TechnicalSpecificationRepository $technicalSpecificationRepository,
                                 CategoryRepository $categoryRepository,
-                                ClientRepository $clientRepository,
                                 ProductTagRepository $productTagRepository,
+                                ProductRelatedRepository $productRelatedRepository,
                                 SEOService $SEOService)
     {
         $this->productRepository = $productRepository;
         $this->productImageRepository = $productImageRepository;
-        $this->productFileRepository = $productFileRepository;
-        $this->productTextRepository = $productTextRepository;
         $this->technicalSpecificationRepository = $technicalSpecificationRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->clientRepository = $clientRepository;
         $this->productTagRepository = $productTagRepository;
+        $this->productRelatedRepository = $productRelatedRepository;
         $this->SEOService = $SEOService;
     }
 
@@ -62,9 +55,11 @@ class ProductController extends Controller
         $seoPage = $this->SEOService->getSeoPageSession(6);
         $this->SEOService->getPage($seoPage);
 
+        $search = $request->get('search');
+        $this->productRepository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $products = $this->productRepository->getAllProductsActive(15);
 
-        return view('site.category.index', compact('products', 'seoPage'));
+        return view('site.category.index', compact('products', 'seoPage', 'search'));
     }
 
     public function show(SiteRequest $request, $seo_link)
@@ -83,7 +78,7 @@ class ProductController extends Controller
             $this->SEOService->getPageComplement($product, $seoPage['name'], $cover, $cover);
 
             $categoryFeatured = $product->categories->firstWhere('main', 'y');
-            $products = $this->productRepository->getAllProductByCategory($categoryFeatured->id, 15, $product->id);
+            $products = $this->productRelatedRepository->getRelateds($product->id, 4);
             $technicals = $this->technicalSpecificationRepository->getAllProduct($product->id);
 
             return view('site.product.show', compact('product', 'seoPage', 'images', 'products', 'categoryFeatured', 'technicals'));
