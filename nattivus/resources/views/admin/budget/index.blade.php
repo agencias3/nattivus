@@ -1,7 +1,21 @@
 @extends('admin.layouts.app')
 @section('content')
     <section role="main" class="content-body">
-        @include('admin.layouts._page_header')
+        <header class="page-header">
+            <h2>{{ $config['title'] }}</h2>
+            <div class="right-wrapper pull-right">
+                <ol class="breadcrumbs">
+                    <li>
+                        <a href="{{ route('admin.home.index') }}">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li><span>Home</span></li>
+                    <li><span>{{ $config['title'] }}</span></li>
+                </ol>
+                <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+            </div>
+        </header>
         <section class="panel">
             <header class="panel-heading">
                 <h2 class="panel-title">{{ $config['title'] }}</h2>
@@ -44,15 +58,17 @@
                             <td data-title="Data" class="text-center">{{ date('d/m/Y h:i', strtotime($row->created_at)) }}</td>
                             <td data-title="Ação" class="actions text-center">
                                 <a href="{{ route('admin.budget.show', ['id' => $row->id]) }}" class="btn btn-default white-hover" title="Visualizar"><i class="fa el-icon-search"></i></a>
+                                @if(Auth::user()->id == 1)
                                 <a href="#modalDestroy" data-route="{{ route('admin.budget.destroy', ['id' => $row->id]) }}" class="excluir remove-row btn btn-danger white" title="Excluir">
                                     <i class="fa fa-trash-o"></i>
                                 </a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-                {!! $dados->links() !!}
+                {{ $dados->links() }}
                 @endif
             </div>
         </section>

@@ -44,7 +44,7 @@ class PostImageController extends Controller
 
     public function header()
     {
-        $config['title'] = "Blog > Post > Galeria";
+        $config['title'] = "Case > Post > Galeria";
         $config['activeMenu'] = 'blog';
         $config['activeMenuN2'] = 'post';
 

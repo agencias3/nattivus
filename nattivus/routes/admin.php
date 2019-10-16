@@ -52,6 +52,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         });
     });
 
+    //CATALOG
+    Route::group(['prefix' => 'catalog', 'as' => 'catalog.', 'namespace' => 'Catalog'], function () {
+        Route::get('', ['as' => 'index', 'uses' => 'CatalogController@index']);
+        Route::get('create', ['as' => 'create', 'uses' => 'CatalogController@create']);
+        Route::post('store', ['as' => 'store', 'uses' => 'CatalogController@store']);
+        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'CatalogController@edit']);
+        Route::post('update/{id}', ['as' => 'update', 'uses' => 'CatalogController@update']);
+        Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'CatalogController@destroy']);
+        Route::get('active/{id}', ['as' => 'active', 'uses' => 'CatalogController@active']);
+        Route::get('destroyFile/{id}/{name}', ['as' => 'destroyFile', 'uses' => 'CatalogController@destroyFile']);
+    });
+
     //TEAM
     Route::group(['prefix' => 'team', 'as' => 'team.', 'namespace' => 'Team'], function () {
         Route::get('', ['as' => 'index', 'uses' => 'TeamController@index']);

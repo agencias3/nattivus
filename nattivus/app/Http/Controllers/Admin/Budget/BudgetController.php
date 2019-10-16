@@ -130,10 +130,9 @@ class BudgetController extends Controller
         $listar = $this->repository->all();
 
         $campos = "Nome;";
+        $campos .= "Empresa;";
         $campos .= "E-mail;";
         $campos .= "Telefone;";
-        $campos .= "Celular;";
-        $campos .= "Arquivo;";
         $campos .= "Visualizado;";
         $campos .= "Mensagem;";
         $campos .= "Data;";
@@ -154,10 +153,9 @@ class BudgetController extends Controller
 
             $item = '"';
             $item .= utf8_decode($dados->name) . '";"';
+            $item .= utf8_decode($dados->company) . '";"';
             $item .= utf8_decode($dados->email) . '";"';
             $item .= utf8_decode($dados->phone) . '";"';
-            $item .= utf8_decode($dados->cell_phone) . '";"';
-            $item .= utf8_decode($file) . '";"';
             $item .= utf8_decode($view) . '";"';
             $item .= utf8_decode($dados->message) . '";"';
             $item .= utf8_decode(date('d/m/Y h:i', strtotime($dados->created_at))) . '";';

@@ -32,7 +32,6 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     */
     public function validator()
     {
-
         return CategoryValidator::class;
     }
 

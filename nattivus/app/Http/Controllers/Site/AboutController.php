@@ -2,7 +2,7 @@
 
 namespace AgenciaS3\Http\Controllers\Site;
 
-use AgenciaS3\Http\Controllers\Admin\Team\TeamController;
+use AgenciaS3\Http\Controllers\Admin\Team\CatalogController;
 use AgenciaS3\Http\Controllers\Controller;
 use AgenciaS3\Http\Requests\SiteRequest;
 use AgenciaS3\Repositories\TeamRepository;

@@ -53,6 +53,8 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/cases/tag/{tag}', 'BlogController@tag')->name('blog.tag');
     Route::get('/cases/{seo_link}', 'BlogController@show')->name('blog.show');
 
+    Route::get('/catalogo', 'CatalogController@index')->name('catalog');
+
     Route::get('/contato', 'ContactController@index')->name('contact');
     Route::post('/contato/store', 'ContactController@store')->name('contact.store');
 

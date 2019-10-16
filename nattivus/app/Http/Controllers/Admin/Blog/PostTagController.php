@@ -39,7 +39,7 @@ class PostTagController extends Controller
 
     public function header()
     {
-        $config['title'] = "Blog > Post";
+        $config['title'] = "Case > Post";
         $config['activeMenu'] = 'blog';
         $config['activeMenuN2'] = 'post';
         $config['action'] = 'Tags';

@@ -15,6 +15,13 @@
             </a>
         </li>
     @endif
+    @if($ativo == 'catalogo')
+        <li>
+            <a href="{{ route('catalog') }}" title="Catálogo">
+                Catálogo
+            </a>
+        </li>
+    @endif
     @if($ativo == 'contato')
     <li>
         <a href="{{ route('contact') }}" title="Contato">

@@ -28,7 +28,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="" title="CATÁLOGOS">
+							<a href="{{ route('catalog') }}" title="CATÁLOGOS">
 								CATÁLOGOS
 							</a>
 						</li>
@@ -86,6 +86,7 @@
 							@include('site.layouts.cart-header')
 						</span>
 					</a>
+					<!--
 					<a class="flex-1 c-left d_flex justify-center secondary-bg-1 bt-login smooth w-600-100" href="" title="Cadastro/Login">
 						<span class="font-2 smooth">
 							Cadastro/Login
@@ -94,6 +95,7 @@
 							<img src="{{ asset('assets/site/images/icons/down.png') }}" title="Cadastro/Login" alt="Cadastro/Login" />
 						</figure>
 					</a>
+					-->
 				</section>
 				@if(isPost(session()->get('configuration')[5]['description']))
 				<aside class="flex-1 display-1250-none">

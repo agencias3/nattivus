@@ -46,60 +46,46 @@
                                     Quem Somos
                                 </a>
                             </li>
+                            <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'page-2')class="active"@endif>
+                                <a href="{{ route('admin.configuration.page.edit', 2) }}">
+                                    Missão
+                                </a>
+                            </li>
                             <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'page-3')class="active"@endif>
                                 <a href="{{ route('admin.configuration.page.edit', 3) }}">
-                                    Missão
+                                    Visão
                                 </a>
                             </li>
                             <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'page-4')class="active"@endif>
                                 <a href="{{ route('admin.configuration.page.edit', 4) }}">
-                                    Visão
+                                    Valores
                                 </a>
                             </li>
                             <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'page-5')class="active"@endif>
                                 <a href="{{ route('admin.configuration.page.edit', 5) }}">
-                                    Valores
+                                    Junte-se
+                                </a>
+                            </li>
+                            <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'team')class="active"@endif>
+                                <a href="{{ route('admin.team.index') }}">
+                                    Equipe
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-parent @if(isset($config['activeMenu']) && $config['activeMenu'] == 'tip') nav-expanded nav-active @endif">
+                    <li class="nav-parent @if(isset($config['activeMenu']) && $config['activeMenu'] == 'catalog') nav-expanded nav-active @endif">
                         <a>
-                            <i class="fa fa-question" aria-hidden="true"></i>
-                            <span>Você sabia?</span>
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                            <span>Catálogo</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'tip')class="active"@endif>
-                                <a href="{{ route('admin.tip.index') }}">
-                                    Você sabia?
+                            <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'catalog')class="active"@endif>
+                                <a href="{{ route('admin.catalog.index') }}">
+                                    Catálogo
                                 </a>
                             </li>
-                            <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'page-7')class="active"@endif>
-                                <a href="{{ route('admin.configuration.page.edit', 7) }}">
-                                    Descrição
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li @if(isset($config['activeMenu']) && $config['activeMenu'] == 'client')class="nav-expanded nav-active"@endif>
-                        <a href="{{ route('admin.client.index') }}">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <span>Clientes</span>
-                        </a>
-                    </li>
-                    <li class="nav-parent @if(isset($config['activeMenu']) && $config['activeMenu'] == 'segment') nav-expanded nav-active @endif">
-                        <a>
-                            <i class="fa fa-list-alt" aria-hidden="true"></i>
-                            <span>Segmentos</span>
-                        </a>
-                        <ul class="nav nav-children">
-                            <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'segment')class="active"@endif>
-                                <a href="{{ route('admin.segment.index') }}">
-                                    Segmentos
-                                </a>
-                            </li>
-                            <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'page-2')class="active"@endif>
-                                <a href="{{ route('admin.configuration.page.edit', 2) }}">
+                            <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'page-9')class="active"@endif>
+                                <a href="{{ route('admin.configuration.page.edit', 9) }}">
                                     Descrição
                                 </a>
                             </li>
@@ -136,12 +122,12 @@
                     <li class="nav-parent @if(isset($config['activeMenu']) && $config['activeMenu'] == 'blog') nav-expanded nav-active @endif">
                         <a>
                             <i class="fa fa-tags" aria-hidden="true"></i>
-                            <span>Blog</span>
+                            <span>Cases</span>
                         </a>
                         <ul class="nav nav-children">
                             <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'post')class="active"@endif>
                                 <a href="{{ route('admin.blog.post.index') }}">
-                                    Blog
+                                    Cases
                                 </a>
                             </li>
                             <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'tag')class="active"@endif>
@@ -180,6 +166,11 @@
                             <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'page-8')class="active"@endif>
                                 <a href="{{ route('admin.configuration.page.edit', 8) }}">
                                     Descrição Trabalhe Conosco
+                                </a>
+                            </li>
+                            <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'budget')class="active"@endif>
+                                <a href="{{ route('admin.budget.index') }}">
+                                    Orçamentos
                                 </a>
                             </li>
                             <li @if(isset($config['activeMenuN2']) && $config['activeMenuN2'] == 'newsletter')class="active"@endif>

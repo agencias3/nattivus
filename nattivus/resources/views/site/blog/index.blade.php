@@ -11,7 +11,7 @@
                     <img class="w-100" src="{{ asset('uploads/banner/banner-cases.jpg') }}" title="" alt="" />
                 </figure>
                 @if(!$tags->isEmpty())
-                <nav class="w-100 m-top-50 menu-category-3 d_flex wrap m-top-1024-20">
+                <nav class="w-100 m-top-50 menu-category-3 menu-case d_flex wrap m-top-1024-20">
                     <ul class="flex-1 wrap d_flex w-1024-100 justify-1024-center">
                         @foreach($tags as $tag)
                         <li @if($tag->seo_link == 'seo_link') class="active" @endif>
@@ -21,10 +21,10 @@
                         </li>
                         @endforeach
                     </ul>
-                    <div class="flex-1 self-center buttons d_flex w-1024-100 justify-1024-center">
+                    <!--div class="flex-1 self-center buttons d_flex w-1024-100 justify-1024-center">
                         <a class="prev-category disabled" href="javascript:void(0);"></a>
                         <a class="next-category" href="javascript:void(0);"></a>
-                    </div>
+                    </div-->
                 </nav>
                 @endif
                 <div class="f-left m-top-10 d_flex wrap justify-center list-group-9 m-top-1024-0">

@@ -86,15 +86,16 @@ class PageController extends Controller
     {
         $config = $this->header();
         $config['action'] = 'Editar';
-        if ($id == 1 || $id == 3 || $id == 4 || $id == 5) {
+        if ($id == 1 || $id == 2 || $id == 3 || $id == 4 || $id == 5) {
             $config['activeMenu'] = "about";
         }
 
-        if ($id == 2) {
-            $config['activeMenu'] = "segment";
-        }
-        if ($id >= 6 || $id <= 8) {
+        if ($id == 6 || $id == 7 || $id == 8) {
             $config['activeMenu'] = "form";
+        }
+
+        if ($id == 9) {
+            $config['activeMenu'] = "catalog";
         }
 
         $imageSize = 'xx X xx';

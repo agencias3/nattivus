@@ -5,14 +5,10 @@ namespace AgenciaS3\Http\Controllers\Site;
 use AgenciaS3\Http\Controllers\Controller;
 use AgenciaS3\Http\Requests\SiteRequest;
 use AgenciaS3\Repositories\CategoryRepository;
-use AgenciaS3\Repositories\ClientRepository;
-use AgenciaS3\Repositories\ProductFileRepository;
 use AgenciaS3\Repositories\ProductImageRepository;
 use AgenciaS3\Repositories\ProductRelatedRepository;
 use AgenciaS3\Repositories\ProductRepository;
 use AgenciaS3\Repositories\ProductTagRepository;
-use AgenciaS3\Repositories\ProductTechnicalSpecificationRepository;
-use AgenciaS3\Repositories\ProductTextRepository;
 use AgenciaS3\Repositories\TechnicalSpecificationRepository;
 use AgenciaS3\Services\SEOService;
 
@@ -98,5 +94,25 @@ class ProductController extends Controller
         $this->productTagRepository->popCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         return $this->productTagRepository->getTags($id, 1);
     }
+
+    public function getProductTag($id, $limit)
+    {
+        $this->productTagRepository->popCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        return $this->productTagRepository->getTagProducts($id,$limit);
+    }
+
+    public function getProductRand($limit)
+    {
+        $this->productRepository->popCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        return $this->productRepository->getAllProductRand($limit);
+    }
+
+    public function getProductCategoryRand($id, $limit)
+    {
+        $this->productRepository->popCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        return $this->productRepository->getAllProductByCategoryRand($id, $limit);
+    }
+
+
 
 }

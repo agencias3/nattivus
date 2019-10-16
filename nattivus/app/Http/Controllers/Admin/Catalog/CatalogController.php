@@ -1,47 +1,35 @@
 <?php
 
-namespace AgenciaS3\Http\Controllers\Admin\Blog;
+namespace AgenciaS3\Http\Controllers\Admin\Catalog;
 
-use AgenciaS3\Http\Controllers\Admin\Configuration\Keyword\KeywordCheckController;
 use AgenciaS3\Http\Controllers\Controller;
 use AgenciaS3\Http\Requests\AdminRequest;
-use AgenciaS3\Repositories\PostProductRepository;
-use AgenciaS3\Repositories\PostRepository;
-use AgenciaS3\Repositories\SegmentRepository;
+use AgenciaS3\Repositories\CatalogRepository;
 use AgenciaS3\Services\UtilObjeto;
-use AgenciaS3\Validators\PostValidator;
+use AgenciaS3\Validators\CatalogValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 
-class PostController extends Controller
+class CatalogController extends Controller
 {
 
     protected $repository;
 
     protected $validator;
 
-    protected $postImageController;
-
-    protected $postTagController;
-
-    protected $postProductController;
-
     protected $utilObjeto;
 
-    public function __construct(PostRepository $repository,
-                                PostValidator $validator,
-                                PostImageController $postImageController,
-                                PostTagController $postTagController,
-                                PostProductController $postProductController,
+    protected $path;
+
+    public function __construct(CatalogRepository $repository,
+                                CatalogValidator $validator,
                                 UtilObjeto $utilObjeto)
     {
         $this->repository = $repository;
         $this->validator = $validator;
-        $this->postImageController = $postImageController;
-        $this->postTagController = $postTagController;
-        $this->postProductController = $postProductController;
         $this->utilObjeto = $utilObjeto;
+        $this->path = 'uploads/catalog/';
     }
 
     public function index()
@@ -49,14 +37,14 @@ class PostController extends Controller
         $config = $this->header();
         $dados = $this->repository->orderBy('date', 'desc')->paginate();
 
-        return view('admin.blog.post.index', compact('dados', 'config'));
+        return view('admin.catalog.index', compact('dados', 'config'));
     }
 
     public function header()
     {
-        $config['title'] = "Case";
-        $config['activeMenu'] = "blog";
-        $config['activeMenuN2'] = "post";
+        $config['title'] = "Catálogo";
+        $config['activeMenu'] = "catalog";
+        $config['activeMenuN2'] = "catalog";
 
         return $config;
     }
@@ -66,7 +54,7 @@ class PostController extends Controller
         $config = $this->header();
         $config['action'] = 'Cadastrar';
 
-        return view('admin.blog.post.create', compact('config'));
+        return view('admin.catalog.create', compact('config'));
     }
 
     public function store(AdminRequest $request)
@@ -74,8 +62,18 @@ class PostController extends Controller
         try {
             $data = $request->all();
             $data['date'] = data_to_mysql($data['date']);
-            $data['date_publish'] = data_to_mysql_hour($data['date_publish'] . ':00');
-            $data['seo_link'] = $this->utilObjeto->nameUrl($data['name']);
+            if (isset($data['image'])) {
+                $image = $this->utilObjeto->uploadFile($request, $data, $this->path, 'image', 'image|mimes:jpeg,png,jpg,gif,svg|max:2048');
+                if ($image) {
+                    $data['image'] = $image;
+                }
+            }
+            if (isset($data['file'])) {
+                $image = $this->utilObjeto->uploadFile($request, $data, $this->path, 'file', 'max:10240');
+                if ($image) {
+                    $data['file'] = $image;
+                }
+            }
 
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
             $dados = $this->repository->create($data);
@@ -84,9 +82,16 @@ class PostController extends Controller
                 'success' => 'Registro adicionado com sucesso!'
             ];
 
-            return redirect()->route('admin.blog.post.gallery.index', ['id' => $dados->id])->with('success', $response['success']);
+            return redirect()->back()->with('success', $response['success']);
 
         } catch (ValidatorException $e) {
+            if (isset($data['image'])) {
+                $this->utilObjeto->destroyFile($this->path, $data['image']);
+            }
+            if (isset($data['file'])) {
+                $this->utilObjeto->destroyFile($this->path, $data['file']);
+            }
+
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
     }
@@ -97,14 +102,9 @@ class PostController extends Controller
         $config['action'] = 'Editar';
 
         $dados = $this->repository->find($id);
-        $dados['date'] = mysql_to_data($dados->date);
-        $dados['date_publish'] = mysql_to_data($dados->date_publish, true);
+        $dados['date'] = mysql_to_data($dados['date']);
 
-        $warnings[] = (new KeywordCheckController)->checkDescription($dados->description, 'Descrição', 3);
-        $warnings[] = (new KeywordCheckController)->checkDescription($dados->name, 'Nome', 1);
-        $warnings[] = (new KeywordCheckController)->checkDescription($dados->seo_link, 'SEO Link', 1);
-
-        return view('admin.blog.post.edit', compact('dados', 'config', 'warnings'));
+        return view('admin.catalog.edit', compact('dados', 'config'));
     }
 
     public function update(AdminRequest $request, $id)
@@ -112,8 +112,18 @@ class PostController extends Controller
         try {
             $data = $request->all();
             $data['date'] = data_to_mysql($data['date']);
-            $data['date_publish'] = data_to_mysql_hour($data['date_publish'] . ':00');
-            $data['seo_link'] = $this->utilObjeto->nameUrl($data['name']);
+            if (isset($data['image'])) {
+                $image = $this->utilObjeto->uploadFile($request, $data, $this->path, 'image', 'image|mimes:jpeg,png,jpg,gif,svg|max:2048');
+                if ($image) {
+                    $data['image'] = $image;
+                }
+            }
+            if (isset($data['file'])) {
+                $image = $this->utilObjeto->uploadFile($request, $data, $this->path, 'file', 'max:10240');
+                if ($image) {
+                    $data['file'] = $image;
+                }
+            }
 
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
             $dados = $this->repository->update($data, $id);
@@ -152,11 +162,25 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        $this->postTagController->destroyAllPost($id);
-        $this->postImageController->destroyGallery($id);
-        $this->postProductController->destroyAllPost($id);
         $deleted = $this->repository->delete($id);
         return redirect()->back()->with('success', 'Registro removido com sucesso!');
+    }
+
+    public function destroyFile($id, $name)
+    {
+        $dados = $this->repository->find($id);
+        if (isset($dados->$name)) {
+            $data = $dados->toArray();
+            if (isset($dados->$name) && $this->utilObjeto->destroyFile($this->path, $dados->$name)) {
+
+                $data[$name] = '';
+                $this->repository->update($data, $id);
+
+                return redirect()->back()->with('success', ucfirst($name) . ' removida com sucesso!');
+            }
+
+            return redirect()->back()->withErrors('Erro ao excluír ' . ucfirst($name))->withInput();
+        }
     }
 
 }

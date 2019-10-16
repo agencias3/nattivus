@@ -37,8 +37,8 @@ class PageItemController extends Controller
     public function header()
     {
         $config['title'] = "Páginas e Textos > Ítens";
-        $config['activeMenu'] = "page";
-        $config['activeMenuN2'] = "page";
+        $config['activeMenu'] = "about";
+        $config['activeMenuN2'] = "page-4";
 
         return $config;
     }

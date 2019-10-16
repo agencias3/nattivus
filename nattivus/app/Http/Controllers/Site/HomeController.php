@@ -6,11 +6,11 @@ use AgenciaS3\Http\Controllers\Controller;
 use AgenciaS3\Http\Requests\SiteRequest;
 use AgenciaS3\Repositories\BannerMobileRepository;
 use AgenciaS3\Repositories\BannerRepository;
+use AgenciaS3\Repositories\CatalogRepository;
 use AgenciaS3\Repositories\CategoryRepository;
 use AgenciaS3\Repositories\PostRepository;
 use AgenciaS3\Repositories\ProductRepository;
-use AgenciaS3\Repositories\SegmentRepository;
-use AgenciaS3\Repositories\StoreRepository;
+use AgenciaS3\Repositories\TagProductRepository;
 use AgenciaS3\Services\SEOService;
 
 class HomeController extends Controller
@@ -26,6 +26,10 @@ class HomeController extends Controller
 
     protected $postRepository;
 
+    protected $tagProductRepository;
+
+    protected $catalogRepository;
+
     protected $SEOService;
 
     public function __construct(BannerRepository $bannerRepository,
@@ -33,6 +37,8 @@ class HomeController extends Controller
                                 ProductRepository $productRepository,
                                 CategoryRepository $categoryRepository,
                                 PostRepository $postRepository,
+                                TagProductRepository $tagProductRepository,
+                                CatalogRepository $catalogRepository,
                                 SEOService $SEOService)
     {
         $this->bannerRepository = $bannerRepository;
@@ -40,6 +46,8 @@ class HomeController extends Controller
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->postRepository = $postRepository;
+        $this->tagProductRepository = $tagProductRepository;
+        $this->catalogRepository = $catalogRepository;
         $this->SEOService = $SEOService;
     }
 
@@ -51,9 +59,11 @@ class HomeController extends Controller
         $banners = $this->bannerRepository->showStore(5);
         $mobile = $this->bannerMobileRepository->showStore(1);
         $categories = $this->categoryRepository->orderBy('order', 'asc')->findWhere(['active' => 'y', 'featured_home' => 'y']);
-        $posts = $this->postRepository->getPostsActive(3);
+        $posts = $this->postRepository->getPostsActive(6);
+        $tagProducts = $this->tagProductRepository->orderBy('name', 'asc')->findByField('active', 'y');
+        $catalogs = $this->catalogRepository->getActive(2);
 
-        return view('site.home.index', compact('seoPage', 'banners', 'mobile', 'categories', 'posts'));
+        return view('site.home.index', compact('seoPage', 'banners', 'mobile', 'categories', 'posts', 'tagProducts', 'catalogs'));
     }
 
 }

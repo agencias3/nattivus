@@ -9,9 +9,9 @@
             @foreach($categories as $row)
             <?php $subCategories = $objCategory->getSubActives($row->id); ?>
         <nav>
-            <span>
+            <a class="-active" href="{{ route('category.show', $row->seo_link) }}" title="{{ $row->name }}">
                 {{ $row->name }}
-            </span>
+            </a>
             @if(!$subCategories->isEmpty())
             <ul>
                 @foreach($subCategories as $sub)

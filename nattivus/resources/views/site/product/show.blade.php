@@ -18,7 +18,9 @@
                 </div>
                 <article class="w-100 m-top-30 d_flex wrap box-product column-1024 m-top-1024-20">
                     @if(!$images->isEmpty())
+					<?php $i = count($images); ?>
                     <section class="d_flex flex-1 w-1024-100">
+						@if($i > 1)
                         <nav class="d_flex h-100">
                             <ul class="f-left slider-slick-4-vertical">
                                 @foreach($images as $row)
@@ -34,6 +36,7 @@
                                 @endforeach
                             </ul>
                         </nav>
+						@endif
                         <div class="flex-1 d_flex justify-center main-image-product">
                             <?php $first = $images->first(); ?>
                             <a class="w-100 h-100 d_flex justify-center html5lightbox" data-group="product" href="{{ asset('uploads/product/'.$first->image) }}" title="">
@@ -44,7 +47,7 @@
                         </div>
                     </section>
                     @endif
-                    <aside class="flex-1 d_flex m-left-50-px w-1024-100 m-top-1024-40 t-align-1024-c">
+                    <aside class="m-left-50-px flex-1 d_flex w-1024-100 m-top-1024-40 t-align-1024-c">
                         <div class="flex-1 d_flex direction-column justify-center self-center">
                             <div class="w-100 info">
                                 <?php $tag = $objProduct->getTagProduct($product->id, 1); ?>

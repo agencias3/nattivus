@@ -11,6 +11,44 @@
         <span class="separator"></span>
         <ul class="notifications">
             <li>
+                @inject('objBudget', 'AgenciaS3\Http\Controllers\Admin\Budget\BudgetController')
+                <?php $budgettHeader = $objBudget->listHeader(); ?>
+                <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="badge">{{ count($budgettHeader) }}</span>
+                </a>
+                <div class="dropdown-menu notification-menu">
+                    <div class="notification-title">
+                        <span class="pull-right label label-default">{{ count($budgettHeader) }}</span>
+                        Orçamentos
+                    </div>
+                    <div class="content">
+                        @if($budgettHeader->isEmpty())
+                            Nenhum novo orçamento!
+                        @else
+                            <ul>
+                                <?php $cont = 0; ?>
+                                @foreach($budgettHeader as $row)
+                                    <?php $cont++; ?>
+                                    @if($cont <= 5)
+                                        <li>
+                                            <a href="{{ route('admin.budget.show', ['id' => $row->id]) }}" class="clearfix">
+                                                <span class="title">{{ $row->name }}</span>
+                                                <span class="message">{{ str_limit(strip_tags($row->message),50).'...' }}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @endif
+                        <hr />
+                        <div class="text-right">
+                            <a href="{{ route('admin.budget.index') }}" class="view-more">Visualizar</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
                 @inject('contact', 'AgenciaS3\Http\Controllers\Admin\Contact\ContactController')
                 <?php $contactHeader = $contact->listHeader(); ?>
                 <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
@@ -22,7 +60,6 @@
                         <span class="pull-right label label-default">{{ count($contactHeader) }}</span>
                         Contatos
                     </div>
-
                     <div class="content">
                         @if($contactHeader->isEmpty())
                             Nenhum novo contato!
@@ -42,9 +79,7 @@
                                 @endforeach
                             </ul>
                         @endif
-
                         <hr />
-
                         <div class="text-right">
                             <a href="{{ route('admin.contact.index') }}" class="view-more">Visualizar</a>
                         </div>
