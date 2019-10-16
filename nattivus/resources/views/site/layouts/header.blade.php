@@ -18,27 +18,27 @@
 							</a>
 						</li>
 						<li>
-							<a class="active" href="{{ route('home') }}" title="HOME">
+							<a @if($ativo == 'home') class="active" @endif href="{{ route('home') }}" title="HOME">
 								HOME
 							</a>
 						</li>
 						<li>
-							<a href="{{ route('about') }}" title="QUEM SOMOS">
+							<a @if($ativo == 'quem-somos') class="active" @endif href="{{ route('about') }}" title="QUEM SOMOS">
 								QUEM SOMOS
 							</a>
 						</li>
 						<li>
-							<a href="{{ route('catalog') }}" title="CATÁLOGOS">
+							<a @if($ativo == 'catalogo') class="active" @endif href="{{ route('catalog') }}" title="CATÁLOGOS">
 								CATÁLOGOS
 							</a>
 						</li>
 						<li>
-							<a href="{{ route('blog') }}" title="CASES">
+							<a @if($ativo == 'cases' || $ativo == 'cases/tag/{tag}' || $ativo == 'cases/{seo_link}') class="active" @endif href="{{ route('blog') }}" title="CASES">
 								CASES
 							</a>
 						</li>
 						<li>
-							<a href="{{ route('contact') }}" title="CONTATO">
+							<a @if($ativo == 'contato') class="active" @endif href="{{ route('contact') }}" title="CONTATO">
 								CONTATO
 							</a>
 						</li>

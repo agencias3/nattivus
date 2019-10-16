@@ -5,9 +5,7 @@ namespace AgenciaS3\Http\Controllers\Admin\Blog;
 use AgenciaS3\Http\Controllers\Admin\Configuration\Keyword\KeywordCheckController;
 use AgenciaS3\Http\Controllers\Controller;
 use AgenciaS3\Http\Requests\AdminRequest;
-use AgenciaS3\Repositories\PostProductRepository;
 use AgenciaS3\Repositories\PostRepository;
-use AgenciaS3\Repositories\SegmentRepository;
 use AgenciaS3\Services\UtilObjeto;
 use AgenciaS3\Validators\PostValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -25,22 +23,18 @@ class PostController extends Controller
 
     protected $postTagController;
 
-    protected $postProductController;
-
     protected $utilObjeto;
 
     public function __construct(PostRepository $repository,
                                 PostValidator $validator,
                                 PostImageController $postImageController,
                                 PostTagController $postTagController,
-                                PostProductController $postProductController,
                                 UtilObjeto $utilObjeto)
     {
         $this->repository = $repository;
         $this->validator = $validator;
         $this->postImageController = $postImageController;
         $this->postTagController = $postTagController;
-        $this->postProductController = $postProductController;
         $this->utilObjeto = $utilObjeto;
     }
 
@@ -154,7 +148,6 @@ class PostController extends Controller
     {
         $this->postTagController->destroyAllPost($id);
         $this->postImageController->destroyGallery($id);
-        $this->postProductController->destroyAllPost($id);
         $deleted = $this->repository->delete($id);
         return redirect()->back()->with('success', 'Registro removido com sucesso!');
     }

@@ -71,7 +71,7 @@
                             <tr>
                                 <td data-title="Nome">{{ $row->product->name }}</td>
                                 <td data-title="Quantidade">{{ $row->quantity }}</td>
-                                <td data-title="Esp. Técnica">{{ $row->technical->name }}</td>
+                                <td data-title="Esp. Técnica">@if(isset($row->technical->name)){{ $row->technical->name }}@endif</td>
                             </tr>
                         @endforeach
                         </tbody>

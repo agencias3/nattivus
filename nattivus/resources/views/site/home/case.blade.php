@@ -47,9 +47,11 @@
 						@endif
 						<div class="flex-1">
 							<article class="w-100">
+								<!--
 								<p class="w-100">
 									CARREGADORES
 								</p>
+								-->
 								<span class="w-100">
 									{{ $row->name }}
 								</span>

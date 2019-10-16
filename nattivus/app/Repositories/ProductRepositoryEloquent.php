@@ -5,16 +5,20 @@ namespace AgenciaS3\Repositories;
 use AgenciaS3\Entities\Category;
 use AgenciaS3\Entities\Product;
 use AgenciaS3\Validators\ProductValidator;
+use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Traits\CacheableRepository;
 
 /**
  * Class ProductRepositoryEloquent.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class ProductRepositoryEloquent extends BaseRepository implements ProductRepository
+class ProductRepositoryEloquent extends BaseRepository implements ProductRepository, CacheableInterface
 {
+
+    use CacheableRepository;
 
     protected $fieldSearchable = [
         'name' => 'like',

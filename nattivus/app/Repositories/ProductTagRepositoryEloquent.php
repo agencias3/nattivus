@@ -4,16 +4,20 @@ namespace AgenciaS3\Repositories;
 
 use AgenciaS3\Entities\ProductTag;
 use AgenciaS3\Validators\ProductTagValidator;
+use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Traits\CacheableRepository;
 
 /**
  * Class ProductTagRepositoryEloquent.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class ProductTagRepositoryEloquent extends BaseRepository implements ProductTagRepository
+class ProductTagRepositoryEloquent extends BaseRepository implements ProductTagRepository, CacheableInterface
 {
+
+    use CacheableRepository;
 
     public function getTags($product_id, $limit = null)
     {

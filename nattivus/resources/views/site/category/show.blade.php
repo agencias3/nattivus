@@ -17,6 +17,7 @@
                             }
                             ?>
                         </h2>
+                        <!--
                         <div class="f-right d_flex relative box-select w-600-100 m-top-600-30 none">
                             <b class="flex-1">
                                 Mais Vendidos
@@ -37,6 +38,7 @@
                                 </option>
                             </select>
                         </div>
+                        -->
                     </div>
                 </div>
                 <nav class="w-100 list-group-3 list-group-3-internal w-1024-100">

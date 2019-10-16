@@ -13,10 +13,10 @@
                 @if(!$tags->isEmpty())
                 <nav class="w-100 m-top-50 menu-category-3 menu-case d_flex wrap m-top-1024-20">
                     <ul class="flex-1 wrap d_flex w-1024-100 justify-1024-center">
-                        @foreach($tags as $tag)
-                        <li @if($tag->seo_link == 'seo_link') class="active" @endif>
-                            <a href="{{ route('blog.tag', $tag->seo_link) }}" title="{{ $tag->name }}">
-                                {{ $tag->name }}
+                        @foreach($tags as $row)
+                        <li @if(isset($tag) && $tag->seo_link == $row->seo_link) class="active" @endif>
+                            <a href="{{ route('blog.tag', $row->seo_link) }}" title="{{ $row->name }}">
+                                {{ $row->name }}
                             </a>
                         </li>
                         @endforeach

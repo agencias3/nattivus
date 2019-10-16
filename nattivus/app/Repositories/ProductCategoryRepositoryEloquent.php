@@ -2,19 +2,24 @@
 
 namespace AgenciaS3\Repositories;
 
+use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use AgenciaS3\Repositories\ProductCategoryRepository;
 use AgenciaS3\Entities\ProductCategory;
 use AgenciaS3\Validators\ProductCategoryValidator;
+use Prettus\Repository\Traits\CacheableRepository;
 
 /**
  * Class ProductCategoryRepositoryEloquent.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class ProductCategoryRepositoryEloquent extends BaseRepository implements ProductCategoryRepository
+class ProductCategoryRepositoryEloquent extends BaseRepository implements ProductCategoryRepository, CacheableInterface
 {
+
+    use CacheableRepository;
+
     /**
      * Specify Model class name
      *

@@ -99,11 +99,11 @@ class PageController extends Controller
         }
 
         $imageSize = 'xx X xx';
-        if ($id == 1) {
-            $imageSize = '470px X 370px';
+        if ($id == 3) {
+            $imageSize = '655px X 390px';
         }
-        if ($id == 2) {
-            $imageSize = '500px X 537px';
+        if ($id == 5) {
+            $imageSize = '1260px X 475px';
         }
 
         $bannerSize = '1920px X 500px';

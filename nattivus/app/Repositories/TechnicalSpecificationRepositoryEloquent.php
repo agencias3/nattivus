@@ -5,16 +5,20 @@ namespace AgenciaS3\Repositories;
 use AgenciaS3\Entities\Category;
 use AgenciaS3\Entities\TechnicalSpecification;
 use AgenciaS3\Validators\TechnicalSpecificationValidator;
+use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Traits\CacheableRepository;
 
 /**
  * Class TechnicalSpecificationRepositoryEloquent.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class TechnicalSpecificationRepositoryEloquent extends BaseRepository implements TechnicalSpecificationRepository
+class TechnicalSpecificationRepositoryEloquent extends BaseRepository implements TechnicalSpecificationRepository, CacheableInterface
 {
+
+    use CacheableRepository;
 
     public function getAllProduct($product_id, $limit = null)
     {

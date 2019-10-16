@@ -2,19 +2,24 @@
 
 namespace AgenciaS3\Repositories;
 
+use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use AgenciaS3\Repositories\BudgetRepository;
 use AgenciaS3\Entities\Budget;
 use AgenciaS3\Validators\BudgetValidator;
+use Prettus\Repository\Traits\CacheableRepository;
 
 /**
  * Class BudgetRepositoryEloquent.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class BudgetRepositoryEloquent extends BaseRepository implements BudgetRepository
+class BudgetRepositoryEloquent extends BaseRepository implements BudgetRepository, CacheableInterface
 {
+
+    use CacheableRepository;
+
     /**
      * Specify Model class name
      *

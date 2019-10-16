@@ -105,7 +105,7 @@ $style = [
                                                 <tr>
                                                     <td style="{{ $fontFamily }}"><p style="{{ $style['paragraph'] }}">{{ $row->product->name }}</p></td>
                                                     <td style="{{ $fontFamily }}" align="center"><p style="{{ $style['paragraph'] }}">{{ $row->quantity }}</p></td>
-                                                    <td style="{{ $fontFamily }}" align="center"><p style="{{ $style['paragraph'] }}">{{ $row->technical->name }}</p></td>
+                                                    <td style="{{ $fontFamily }}" align="center"><p style="{{ $style['paragraph'] }}">@if(isset($row->technical->name)){{ $row->technical->name }}@endif</p></td>
                                                 </tr>
                                             @endforeach
                                         </table>

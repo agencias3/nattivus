@@ -32,39 +32,45 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="" title="Informações de Entrega">
-                                    - Informações de Entrega
+                                <a href="{{ route('catalog') }}" title="Catálogos">
+                                    - Catálogos
                                 </a>
                             </li>
                             <li>
-                                <a href="" title="Dúvidas no site">
-                                    - Dúvidas no site
+                                <a href="{{ route('blog') }}" title="Dúvidas no site">
+                                    - Cases
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('contact') }}" title="Fale Conosco">
-                                    - Fale Conosco
+                                <a href="{{ route('contact') }}" title="Contato">
+                                    - Contato
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('work') }}" title="Trabalhe Conosco">
+                                    - Trabalhe Conosco
                                 </a>
                             </li>
                         </ul>
                     </nav>
+                    @inject("objCategory","\AgenciaS3\Http\Controllers\Site\CategoryController")
+                    <?php $categories = $objCategory->getActiveNotFeatureds(7); ?>
+                    @if(!$categories->isEmpty())
                     <nav class="m-top-40 d_flex flex-1 direction-column menu-footer t-align-800-c">
-                            <span>
-                                Minha Conta
-                            </span>
+                        <span>
+                            Categorias
+                        </span>
                         <ul class="d_flex direction-column">
-                            <li>
-                                <a href="" title="Login">
-                                    - Login
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" title="Cadastro">
-                                    - Cadastro
-                                </a>
-                            </li>
+                            @foreach($categories as $row)
+                                <li>
+                                    <a href="{{ route('category.show', $row->seo_link) }}" title="{{ $row->name }}">
+                                        {{ $row->name }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </nav>
+                    @endif
                     <div class="m-top-40 d_flex flex-1 direction-column menu-footer t-align-800-c">
                         <span>
                             Nattivus Brindes

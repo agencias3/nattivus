@@ -4,16 +4,20 @@ namespace AgenciaS3\Repositories;
 
 use AgenciaS3\Entities\ProductRelated;
 use AgenciaS3\Validators\ProductRelatedValidator;
+use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Traits\CacheableRepository;
 
 /**
  * Class ProductRelatedRepositoryEloquent.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class ProductRelatedRepositoryEloquent extends BaseRepository implements ProductRelatedRepository
+class ProductRelatedRepositoryEloquent extends BaseRepository implements ProductRelatedRepository, CacheableInterface
 {
+
+    use CacheableRepository;
 
     public function getRelateds($product_id, $limit = null)
     {

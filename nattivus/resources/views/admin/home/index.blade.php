@@ -212,6 +212,56 @@
                                 <div class="summary">
                                     <h4 class="title"></h4>
                                     <div class="info">
+                                        <strong class="amount">Orçamentos</strong>
+                                        <span class="text-primary"></span>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a href="{{ route('admin.budget.index') }}" class="text-muted text-uppercase">(Visualizar)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-12 col-lg-4 col-xl-3">
+                <section class="panel panel-featured-left panel-featured-primary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-primary">
+                                    <i class="fa fa-envelope-o"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title"></h4>
+                                    <div class="info">
+                                        <strong class="amount">Contatos</strong>
+                                        <span class="text-primary"></span>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a href="{{ route('admin.contact.index') }}" class="text-muted text-uppercase">(Visualizar)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-12 col-lg-4 col-xl-3">
+                <section class="panel panel-featured-left panel-featured-primary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-primary">
+                                    <i class="fa fa-envelope-o"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title"></h4>
+                                    <div class="info">
                                         <strong class="amount">Newsletter</strong>
                                         <span class="text-primary"></span>
                                     </div>

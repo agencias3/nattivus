@@ -28,8 +28,6 @@ class ProductController extends Controller
 
     protected $productImageController;
 
-    protected $postProductController;
-
     protected $productTagController;
 
     protected $productTechnicalSpecificationController;
@@ -42,7 +40,6 @@ class ProductController extends Controller
                                 ProductValidator $validator,
                                 CategoryRepository $categoryRepository,
                                 ProductImageController $productImageController,
-                                PostProductController $postProductController,
                                 ProductTagController $productTagController,
                                 ProductTechnicalSpecificationController $productTechnicalSpecificationController,
                                 UtilObjeto $utilObjeto)
@@ -51,7 +48,6 @@ class ProductController extends Controller
         $this->validator = $validator;
         $this->categoryRepository = $categoryRepository;
         $this->productImageController = $productImageController;
-        $this->postProductController = $postProductController;
         $this->productTagController = $productTagController;
         $this->productTechnicalSpecificationController = $productTechnicalSpecificationController;
         $this->utilObjeto = $utilObjeto;

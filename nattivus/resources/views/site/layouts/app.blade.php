@@ -45,9 +45,9 @@ if (Route::getCurrentRoute()->uri() == 'home' || Route::getCurrentRoute()->uri()
     {!! $seoPage['script_body'] !!}
 @endif
 
-@include('site.layouts.header')
+@include('site.layouts.header', ['ativo' => $ativo])
 @yield('content')
-@include('site.layouts.footer')
+@include('site.layouts.footer', ['ativo' => $ativo])
 
 <!-- JS -->
 <script type="text/javascript" src="{{ asset('assets/site/js/main.js') }}"></script>

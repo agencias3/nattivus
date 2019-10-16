@@ -2,19 +2,24 @@
 
 namespace AgenciaS3\Repositories;
 
+use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use AgenciaS3\Repositories\WorkRepository;
 use AgenciaS3\Entities\Work;
 use AgenciaS3\Validators\WorkValidator;
+use Prettus\Repository\Traits\CacheableRepository;
 
 /**
  * Class WorkRepositoryEloquent.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class WorkRepositoryEloquent extends BaseRepository implements WorkRepository
+class WorkRepositoryEloquent extends BaseRepository implements WorkRepository, CacheableInterface
 {
+
+    use CacheableRepository;
+
     /**
      * Specify Model class name
      *

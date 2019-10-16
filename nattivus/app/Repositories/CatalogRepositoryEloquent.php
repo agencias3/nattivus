@@ -4,16 +4,20 @@ namespace AgenciaS3\Repositories;
 
 use AgenciaS3\Entities\Catalog;
 use AgenciaS3\Validators\CatalogValidator;
+use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Traits\CacheableRepository;
 
 /**
  * Class CatalogRepositoryEloquent.
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class CatalogRepositoryEloquent extends BaseRepository implements CatalogRepository
+class CatalogRepositoryEloquent extends BaseRepository implements CatalogRepository, CacheableInterface
 {
+
+    use CacheableRepository;
 
     public function getActive($limit)
     {

@@ -1,5 +1,7 @@
 <?php
 
+use AgenciaS3\Entities\Client;
+
 return [
 
     /*
@@ -40,11 +42,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'trading_partners' => [
+        'client' => [
             'driver' => 'session',
-            'provider' => 'trading_partners',
+            'provider' => 'clients',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -73,9 +74,9 @@ return [
             'driver' => 'eloquent',
             'model' => AgenciaS3\Entities\User::class,
         ],
-        'trading_partners' => [
+        'clients' => [
             'driver' => 'eloquent',
-            'model' => AgenciaS3\Entities\TradingPartner::class,
+            'model' => AgenciaS3\Entities\Client::class,
         ],
 
         // 'users' => [
@@ -105,9 +106,9 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
-        'trading_partners' => [
-            'provider' => 'trading_partners',
-            'table' => 'trading_parnter_password_resets',
+        'clients' => [
+            'provider' => 'clients',
+            'table' => 'client_password_resets',
             'expire' => 60,
         ],
     ],
